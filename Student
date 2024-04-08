@@ -1,0 +1,87 @@
+package tuan11_1;
+import java.io.Serializable;
+import java.util.Scanner; 
+public class Student implements Serializable{
+	int ID; 
+	String Name ; 
+	int Age ;
+	String Adress;
+	int Luong; 
+	
+	public Student() {
+		
+	}
+
+	public Student(int iD, String name, int age, String adress, int luong) {
+		super();
+		ID = iD;
+		Name = name;
+		Age = age;
+		Adress = adress;
+		Luong = luong;
+	}
+	
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
+	public int getAge() {
+		return Age;
+	}
+
+	public void setAge(int age) {
+		Age = age;
+	}
+
+	public String getAdress() {
+		return Adress;
+	}
+
+	public void setAdress(String adress) {
+		Adress = adress;
+	}
+
+	public int getLuong() {
+		return Luong;
+	}
+
+	public void setLuong(int luong) {
+		Luong = luong;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [ID=" + ID + ", Name=" + Name + ", Age=" + Age + ", Adress=" + Adress + ", Luong=" + Luong
+				+ "]";
+	}
+	public void nhapDuLieu() {
+		System.out.println("\n...........................Nhập thông tin của nhân viên mới......................\n");
+		Scanner sc = new Scanner(System.in); 
+		System.out.println("Nhập mã sinh viên: ");
+		this.ID = sc.nextInt(); 
+		System.out.println("Nhập tên sinh viên: ");
+		this.Name =sc.nextLine();
+		sc.nextLine(); 
+		System.out.println("Nhập tuổi: ");
+		this.Age =sc.nextInt(); 
+		System.out.println("Nhập địa chỉ: ");
+		this.Adress = sc.nextLine(); 
+		System.out.println("Nhập lương: ");
+		this.Luong = sc.nextInt() ; 
+	}
+	
+
+	
+}
