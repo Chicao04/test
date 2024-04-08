@@ -1,0 +1,71 @@
+package tuan11_1;
+import java.io.File; 
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SQLiteJDBC {
+	private Connection connect;
+	private Statement stmt; 
+	private ArrayList<Student> listStudent ; 
+	
+	
+	public SQLiteJDBC() {
+		this.connect = null; 
+		this.stmt = null; 
+		this.listStudent = null ; 
+	}
+	
+	public void writeDB(String query ,String pathDB) {
+		try {
+			class.forName("org.sqlite.JDBC"); 
+			connect = DriverManager.getConnection("jdbc:sqlite:" + pathDB); 
+			stmt.executeUpdate(query);
+			stmt.close();
+			connect.close();
+			System.out.println("Executed query successfully: " + pathDB);
+			
+		}
+		catch(Exeception e) {
+			System.err.println(e.getClass().getName()+ ": " + e.getMessage());
+			System.exit(0);
+		}
+		return resultSet;
+	}
+	public ArrayList<Student> readStudentTable(String query ,String DATABASE_PATH ){
+		ResultSet resultSet = this.readDB(query, DATABASE_PATH); 
+		this.listStudent = new ArrayList<>(); 
+		Student emp = null ; 
+		try {
+			while (resultSet.next()) {
+				int ID = resultSet.getInt("id"); 
+				String Name = resultSet.getString("name");
+				int Age = resultSet.getInt("Tuoi"); 
+				String Address = resultSet.getString("Dia Chi"); 
+				int Luong = resultSet.getInt("Luong");
+				emp = new Student(ID ,Name, Age , Address, Luong);
+				this.listStudent.add(emp);
+				
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+			// Xuat du lieu nhan vien 
+			System.out.println("\n ..................Danh sahcs nhan vien trong csdl..............\n");
+			for (int i = 0 ; i < this.listStudent.size(); i++) {
+				System.out.println(this.listStudent.get(i));
+			}
+			return this.listStudent;
+		
+	}
+	public static void main(String[] args ) {
+		SQLiteJDBC sqLiteJDBC  = new SQLiteJDBC(); 
+		String DATABASE_DIR ="D:\\cao_java\\";
+		String DATABASE_NAME = "test11_cao_java.db"; 
+		String DATABASE_PATH = DATABASE_DIR + DATABASE_NAME; 
+		String query =""; 
+		ArrayList<Student> listStu = new ArrayList<>(); 
+		// toaj thu muc chua CSDL neu chua cos 
+		
+	}
+}
+
